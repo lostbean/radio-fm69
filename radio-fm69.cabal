@@ -1,0 +1,61 @@
+name:                radio-fm69
+version:             0.1.0.0
+license:             BSD3
+license-file:        LICENSE
+author:              Edgar Gomes Araujo
+maintainer:          talktoedgar@gmail.com
+build-type:          Simple
+cabal-version:       >=1.10
+
+library
+  default-language:    Haskell2010
+  exposed-modules:
+                       WiringHs
+                       Radio.RFM69
+                       Radio.RFM69.Registers
+  hs-source-dirs:      src
+  build-depends:       base   >= 4.6  && < 4.9
+                     , mtl    >= 2.2  && < 2.3
+                     , vector >= 0.10 && < 1.0
+                     , time   >= 1.5  && < 2.0
+  extra-libraries:     wiringPi pthread
+  ghc-options:        -Wall
+
+executable example
+  default-language:    Haskell2010
+  main-is:             Main.hs
+  build-depends:       base >= 4.6 && < 4.9
+                     , radio-fm69
+                     , transformers
+                     , stm
+                     , vector
+                     , mime-mail
+                     , mtl
+                     , text
+                     , time >= 1.5
+                     , hsyslog
+  hs-source-dirs:      example
+  default-language:    Haskell2010
+  ghc-options:        -Wall -threaded
+
+executable test-radio
+  default-language:    Haskell2010
+  main-is:             TestRadio.hs
+  build-depends:       base >= 4.6 && < 4.9
+                     , radio-fm69
+                     , mtl
+                     , containers
+  hs-source-dirs:      test
+  default-language:    Haskell2010
+  ghc-options:        -Wall -threaded
+
+executable test-pi
+  default-language:    Haskell2010
+  main-is:             TestPi.hs
+  build-depends:       base >= 4.6 && < 4.9
+                     , radio-fm69
+                     , concurrent-extra
+                     , unbounded-delays
+  hs-source-dirs:      test
+  default-language:    Haskell2010
+  ghc-options:        -Wall -threaded
